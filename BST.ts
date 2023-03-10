@@ -33,3 +33,16 @@ function sortedArrayToBST(nums: number[]): TreeNode | null {
     }
     return inner(0, nums.length - 1)
 };
+
+function kthSmallest(root: TreeNode | null, k: number): number {
+    let smallest = [] as number[]
+    function dfs(node: TreeNode | null){
+        if (!node) return
+        if (node.left) dfs(node.left)
+        smallest.push(node.val)
+        if (node.right) dfs(node.right)
+    }
+    dfs(root)
+    return smallest[k-1] // could be optimized to return after finding the value
+    // (n time for all cases). 
+};
